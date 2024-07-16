@@ -17,14 +17,13 @@ class Rover {
         const move = {
           completed: true,
         };
-        messageReceived.results.push(move);
         if (this.mode === "NORMAL") {
           this.position = message.commands[index].value;
           move.completed = true;
         } else {
           move.completed = false;
         }
-        console.log("move completed" + move.completed);
+        messageReceived.results.push(move);
       }
       if (command === "STATUS_CHECK") {
         const statusCheck = {
@@ -41,13 +40,13 @@ class Rover {
         const modeChange = {
           completed: true,
         };
-        messageReceived.results.push(modeChange);
         if (!message.commands[index].value) {
           modeChange.completed = false;
         }
         if (message.commands[index].value) {
           this.mode = message.commands[index].value;
         }
+        messageReceived.results.push(modeChange);
       }
     }
 
